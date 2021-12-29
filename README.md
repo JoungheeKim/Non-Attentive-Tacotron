@@ -81,7 +81,7 @@ with torch.no_grad():
 - So, alignment information between grapheme and audio is essential.
 - We make alignment information using [Wav2vec 2.0](https://arxiv.org/abs/2006.11477) released from [fairseq](https://github.com/pytorch/fairseq/tree/main/examples/wav2vec).
 - We also support pretrained wav2vec 2.0 model for Korean in this [[LINK]](https://drive.google.com/file/d/1BBYDTaBS0co7_VgaRowqk8NvFGA5bBgF/view?usp=sharing).
-- The Korean Wav2vec 2.0 model is trained on aihub korean dialog dataset to generate grapheme based prediction described in [K-Wav2vec 2.0](https://arxiv.org/abs/2110.05172).
+- The Korean Wav2vec 2.0 model is trained on [aihub korean dialog dataset](https://aihub.or.kr/aidata/105) to generate grapheme based prediction described in [K-Wav2vec 2.0](https://arxiv.org/abs/2110.05172).
 - The English model is automatically downloaded when you run the code.
 - Run the command below:
 ```bash
