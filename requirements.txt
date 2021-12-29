@@ -1,0 +1,5 @@
+transformers==4.14.1
+hydra==2.5
+omegaconf==2.1.1
+tgt==1.4.4
+hydra-core==1.1.1
