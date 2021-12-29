@@ -26,12 +26,10 @@ RUN apt-get update -y
 # Install miniconda - optinal
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 RUN apt-get update \
-    && apt-get install -y python3.8 python3-distutils\
-    && cd /usr/local/bin \
-    && ln -s /usr/bin/python3.8 python
-
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-RUN python3.8 get-pip.py
+  && apt-get install -y python3-pip python3-dev \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 install --upgrade pip
 
 RUN apt-get install -y software-properties-common
 RUN apt-add-repository ppa:deadsnakes/ppa
@@ -57,7 +55,6 @@ RUN apt-get install -y libopenblas-dev
 RUN apt-get install -y fftw3
 RUN apt-get install -y libfftw3-dev
 RUN apt-get update && apt-get install -y git libsndfile-dev && apt-get clean
-RUN apt install -y libsox-dev sox fstcompile
 #######################################################
 
 RUN chmod -R 777 /usr/local/lib
