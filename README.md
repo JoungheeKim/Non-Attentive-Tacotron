@@ -17,7 +17,7 @@ git clone https://github.com/JoungheeKim/Non-Attentive-Tacotron.git
 cd Non-Attentive-Tacotron
 
 ## install python dependency
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 
 ## install this implementation locally for further development
 python setup.py develop
@@ -110,7 +110,7 @@ python build_aligned_info.py \
     base.pretrained_model=${PRETRAINED_WAV2VEC} \
     --config-name preprocess_kss
 ```
-
+- We also support our preprocessed forced algined files for [KSS ver1.4 dataset](https://drive.google.com/file/d/1Ou3X_xHDmfYLSLIp3WW8KO6dSvco7iQQ/view?usp=sharing) and [LJSpeech1.1](https://drive.google.com/file/d/1IOLrORHq-_No16yBaiNX6D1p6PIHxT56/view?usp=sharing)
 #### 3. Train & Evaluate
 - It is recommeded to download the pre-trained vocoder before training the non-attentive tacotron model to evaluate the model performance in training phrase.
 - You can download pre-trained VocGAN in this [[LINK]](https://github.com/rishikksh20/VocGAN).
