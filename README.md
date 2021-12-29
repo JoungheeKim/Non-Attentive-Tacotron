@@ -149,10 +149,10 @@ python build_aligned_info.py \
 # Audio Examples
  Language | Text | Audio Sample  | 
 |----------|-------------------------------------------|---------|
-| Korean   | 이 타코트론은 잘 작동한다.                   | https://user-images.githubusercontent.com/30570052/147639514-6b2212ef-5a66-4226-9343-49b639e26370.mp4 |
-| Korean   | <b><ins>이</ins></b> 타코트론은 잘 작동한다. | https://user-images.githubusercontent.com/30570052/147639573-e9fd2e79-cba5-437d-a9c6-5b9bf869e5c6.mp4 |
-| Korean   | 이 <b><ins>타코</ins></b>트론은 잘 작동한다. | https://user-images.githubusercontent.com/30570052/147639588-b8b8abb2-3ea1-47db-b14b-719fbde93054.mp4 |
-| Korean   | 이 타코트론은 <b><ins>잘</ins></b> 작동한다. | https://user-images.githubusercontent.com/30570052/147639606-0a1b09f0-0151-4e1c-923d-b2e482db0194.mp4 |
+| Korean   | 이 타코트론은 잘 작동한다.                   | [Sample](https://user-images.githubusercontent.com/30570052/147639514-6b2212ef-5a66-4226-9343-49b639e26370.mp4) |
+| Korean   | <b><ins>이</ins></b> 타코트론은 잘 작동한다. | [Sample](https://user-images.githubusercontent.com/30570052/147639573-e9fd2e79-cba5-437d-a9c6-5b9bf869e5c6.mp4) |
+| Korean   | 이 <b><ins>타코</ins></b>트론은 잘 작동한다. | [Sample](https://user-images.githubusercontent.com/30570052/147639588-b8b8abb2-3ea1-47db-b14b-719fbde93054.mp4) |
+| Korean   | 이 타코트론은 <b><ins>잘</ins></b> 작동한다. | [Sample](https://user-images.githubusercontent.com/30570052/147639606-0a1b09f0-0151-4e1c-923d-b2e482db0194.mp4) |
 
 
 # Forced Aligned Information Examples
