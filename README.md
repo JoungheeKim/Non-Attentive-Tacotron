@@ -85,7 +85,7 @@ with torch.no_grad():
 ```bash
 ## 1. LJSpeech example
 ## set your data path and audio path(examples are below:)
-AUDIO_PATH=/code/gitRepo/data/LJSpeech-1.1/wavs2
+AUDIO_PATH=/code/gitRepo/data/LJSpeech-1.1/wavs
 SCRIPT_PATH=/code/gitRepo/data/LJSpeech-1.1/metadata.csv
 
 ## ljspeech forced aligner
