@@ -1,0 +1,13 @@
+## option
+defaults:
+  - base: non_taco
+
+base:
+  train_script: data/LJSpeech/train.txt
+  val_script: data/LJSpeech/dev.txt
+  save_path: results/ljspeech
+  gradient_accumulation_steps: 8
+  warmup_steps: 4000
+  normalize_option: NFC
+  generator_path: checkpoints_g/ljspeech_29de09d_4000.pt
+  num_train_epochs: 8000

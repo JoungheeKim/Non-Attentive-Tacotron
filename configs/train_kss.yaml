@@ -1,0 +1,13 @@
+## option
+defaults:
+  - base: non_taco
+
+base:
+  train_script: data/KSS/train.txt
+  val_script: data/KSS/dev.txt
+  save_path: results/kss
+  gradient_accumulation_steps: 8
+  warmup_steps: 4000
+  normalize_option: NFKD
+  generator_path: checkpoints_g/vocgan_kss_pretrained_model_epoch_4500.pt
+  num_train_epochs: 4000

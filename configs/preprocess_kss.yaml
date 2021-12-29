@@ -1,0 +1,11 @@
+## option
+defaults:
+  - base: forced_aligner
+
+base:
+  pretrained_model: checkpoint_wav2vec2_kss
+  save_grid_path: textgrid_korean
+  save_script_path: data/KSS
+  audio_path: /code/gitRepo/data/kss
+  script_path: /code/gitRepo/data/kss/transcript.v.1.4.txt
+  normalize_option: NFKD
