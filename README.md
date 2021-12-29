@@ -126,7 +126,7 @@ SAVE_PATH=results/ljspeech
 ## train ljspeech non-attentive tacotron
 ## check config options in [configs/train_ljspeech.yaml]
 python train.py \
-    base.audio_path=${GENERATOR_PATH} \
+    base.generator_path=${GENERATOR_PATH} \
     base.save_path=${SAVE_PATH} \
     --config-name train_ljspeech
   
@@ -140,7 +140,7 @@ SAVE_PATH=results/kss
 ## train kss non-attentive tacotron
 ## check config options in [configs/train_kss.yaml]
 python train.py \
-    base.audio_path=${GENERATOR_PATH} \
+    base.generator_path=${GENERATOR_PATH} \
     base.save_path=${SAVE_PATH} \
     --config-name train_kss
 
