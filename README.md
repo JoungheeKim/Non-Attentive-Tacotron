@@ -147,7 +147,7 @@ python build_aligned_info.py \
 ```
 
 # Audio Examples
- Language | Text | Audio Sample  | 
+ Language | Text with Accent(bold) | Audio Sample  | 
 |----------|-------------------------------------------|---------|
 | Korean   | 이 타코트론은 잘 작동한다.                   | [Sample](https://user-images.githubusercontent.com/30570052/147639514-6b2212ef-5a66-4226-9343-49b639e26370.mp4) |
 | Korean   | <b><ins>이</ins></b> 타코트론은 잘 작동한다. | [Sample](https://user-images.githubusercontent.com/30570052/147639573-e9fd2e79-cba5-437d-a9c6-5b9bf869e5c6.mp4) |
