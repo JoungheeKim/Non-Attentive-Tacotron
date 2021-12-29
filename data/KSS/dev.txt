@@ -1,0 +1,10 @@
+/code/gitRepo/data/kss/3/3_3048.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/3_3048.TextGrid
+/code/gitRepo/data/kss/3/3_5002.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/3_5002.TextGrid
+/code/gitRepo/data/kss/2/2_0456.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/2_0456.TextGrid
+/code/gitRepo/data/kss/2/2_0550.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/2_0550.TextGrid
+/code/gitRepo/data/kss/4/4_5113.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/4_5113.TextGrid
+/code/gitRepo/data/kss/4/4_3644.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/4_3644.TextGrid
+/code/gitRepo/data/kss/4/4_0414.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/4_0414.TextGrid
+/code/gitRepo/data/kss/3/3_1131.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/3_1131.TextGrid
+/code/gitRepo/data/kss/4/4_4232.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/4_4232.TextGrid
+/code/gitRepo/data/kss/3/3_2713.wav|/code/gitRepo/non_attentive_taco/textgrid_korean/3_2713.TextGrid

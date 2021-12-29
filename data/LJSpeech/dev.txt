@@ -1,0 +1,10 @@
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ031-0118.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ031-0118.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ048-0178.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ048-0178.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ042-0213.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ042-0213.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ014-0151.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ014-0151.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ031-0191.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ031-0191.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ047-0088.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ047-0088.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ009-0133.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ009-0133.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ016-0052.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ016-0052.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ046-0048.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ046-0048.TextGrid
+/code/gitRepo/data/LJSpeech-1.1/wavs/LJ011-0259.wav|/code/gitRepo/non_attentive_taco/textgrid_english/LJ011-0259.TextGrid
