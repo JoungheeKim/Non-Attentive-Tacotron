@@ -97,6 +97,7 @@ class TGTProcessor(TextMelProcessor):
         return phones, durations, start_time, end_time
 
     def build_tokenizer(self):
+        logging.info('start to build tokenizer')
         wav_text_scripts = get_abspath(self.cfg.train_script)
         wav_paths, text_infos = self.load_script(wav_text_scripts)
         phones = list()
