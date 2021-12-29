@@ -26,8 +26,10 @@ python setup.py develop
 ## Quickstart
 - Install a package.
 - Download Pretrained tacotron models through links below:
-  - [LJSpeech-1.1](https://keithito.com/LJ-Speech-Dataset/) (English, single-female speaker, trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]]()
-  - [KSS Dataset](https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset) (Korean, single-female speaker, trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/1BBYDTaBS0co7_VgaRowqk8NvFGA5bBgF/view?usp=sharing)
+  - [LJSpeech-1.1](https://keithito.com/LJ-Speech-Dataset/) (English, single-female speaker)
+    - trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]]()
+  - [KSS Dataset](https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset) (Korean, single-female speaker)
+    - trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/1BBYDTaBS0co7_VgaRowqk8NvFGA5bBgF/view?usp=sharing)
 - Download Pretrained VocGAN vocoder corresponding tacotron model in this [[LINK]](https://github.com/rishikksh20/VocGAN)
 - Run a python code below:
 ```python
@@ -145,7 +147,7 @@ python train.py \
     --config-name train_kss
 
 ```
-
+- Parameter informations are stored in `tacotron/configs.py`
 # Audio Examples
  Language | Text with Accent(bold) | Audio Sample  | 
 |----------|-------------------------------------------|---------|
