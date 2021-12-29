@@ -1,64 +1,169 @@
-FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV LC_ALL=C.UTF-8
+# Non-attentive Tacotron - PyTorch Implementation
 
-# Install some basic utilities - required
-RUN . /etc/os-release; \
-                printf "deb http://ppa.launchpad.net/jonathonf/vim/ubuntu %s main" "$UBUNTU_CODENAME" main | tee /etc/apt/sources.list.d/vim-ppa.list && \
-                apt-key  adv --keyserver hkps://keyserver.ubuntu.com --recv-key 4AB0F789CBA31744CC7DA76A8CF63AD3F06FC659 && \
-                apt-get update --fix-missing && \
-                env DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade --autoremove --purge --no-install-recommends -y \
-                        build-essential \
-                        bzip2 \
-                        ca-certificates \
-                        curl \
-                        git \
-                        libcanberra-gtk-module \
-                        libgtk2.0-0 \
-                        libx11-6 \
-                        sudo \
-                        graphviz \
-                        vim-nox
+This is Pytorch Implementation of Google's [Non-attentive Tacotron](https://arxiv.org/abs/2010.04301), text-to-speech system.
+There is some minor modifications to the original paper. We use grapheme directly, not phoneme. 
+For that reason, we use grapheme based forced aligner by using [Wav2vec 2.0](https://arxiv.org/abs/2006.11477).
+We also separate special characters from basic characters, and each is used for embedding respectively.
+This project is based on [NVIDIA tacotron2](https://github.com/NVIDIA/tacotron2). Feel free to use this code.
 
-ENV PATH /usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH}
-RUN apt-get update -y
+## Install
+- Before you start the code, you have to check your torch>3.8, torchaudio>=0.10.0 version.
+- Torchaudio version is strongly restrict because of recent modification. 
+- We support docker image file that we used for this implementation.
+- or You can install a package through the command below:
+```bash
+## download the git repository
+git clone 
+cd 
 
-# Install miniconda - optinal
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-RUN apt-get update \
-    && apt-get install -y python3.8 python3-distutils\
-    && cd /usr/local/bin \
-    && ln -s /usr/bin/python3.8 python
+## install python dependency
+pip3 install -r requirements.txt
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-RUN python3.8 get-pip.py
+## install this implementation locally for further development
+python setup.py develop
+```
 
-RUN apt-get install -y software-properties-common
-RUN apt-add-repository ppa:deadsnakes/ppa
+## Quickstart
+- Install a package.
+- Download Pretrained tacotron models through links below:
+  - [LJSpeech-1.1](https://keithito.com/LJ-Speech-Dataset/) (English, single-female speaker, trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]]()
+  - [KSS Dataset](https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset) (Korean, single-female speaker, trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/1BBYDTaBS0co7_VgaRowqk8NvFGA5bBgF/view?usp=sharing)
+- Download Pretrained VocGAN vocoder corresponding tacotron model in this [[LINK]](https://github.com/rishikksh20/VocGAN)
+- Run a python code below:
+```python
+## import library
+from tacotron import get_vocgan
+from tacotron.model import NonAttentiveTacotron
+from tacotron.tokenizer import BaseTokenizer
+import torch
 
-RUN apt-get install -y wget bzip2 ca-certificates \
-    libglib2.0-0 libxext6 libsm6 libxrender1 \
-    git mercurial subversion
+## set device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-RUN apt-get install -y curl grep sed dpkg && \
-    TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$:\1:'` && \
-    curl -L "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini_${TINI_VERSION}.deb" > tini.deb && \
-    dpkg -i tini.deb && \
-    rm tini.deb && \
-    apt-get clean
+## set pretrained model path
+generator_path = '???'
+tacotron_path = '???'
 
-RUN pip install torch torchaudio pandas soundfile editdistance scikit-learn packaging mkl-devel mkl jupyter
+## load generator model
+generator = get_vocgan(generator_path)
+generator.eval()
 
-################### fairseq dependency ################
-RUN apt-get update
-RUN apt-get install -y cmake
-RUN apt-get install -y build-essential libboost-all-dev cmake zlib1g-dev libbz2-dev liblzma-dev
-RUN apt-get install -y libopenblas-dev
-RUN apt-get install -y fftw3
-RUN apt-get install -y libfftw3-dev
-RUN apt-get update && apt-get install -y git libsndfile-dev && apt-get clean
-RUN apt install -y libsox-dev sox fstcompile
-#######################################################
+## load tacotron model
+tacotron = NonAttentiveTacotron.from_pretrained(tacotron_path)
+tacotron.eval()
 
-RUN chmod -R 777 /usr/local/lib
-RUN chmod -R 777 /usr/local/include
+## load tokenizer
+tokenizer = BaseTokenizer.from_pretrained(tacotron_path)
+
+## Inference
+text = 'This is a non attentive tacotron.'
+encoded_text = tokenizer.encode(text)
+encoded_torch_text = {key: torch.tensor(item, dtype=torch.long).unsqueeze(0).to(device) for key, item in encoded_text.items()}
+
+with torch.no_grad():
+    ## make log mel-spectrogram
+    tacotron_output = tacotron.inference(**encoded_torch_text)
+    
+    ## make audio
+    audio = generator.generate_audio(**tacotron_output)
+```
+- We support more details in our [tutorials](tutorial/)
+
+## Preprocess & Train
+#### 1. Download Dataset 
+- First, download your own Dataset for training.
+- We tested our code on [LJSpeech-1.1](https://keithito.com/LJ-Speech-Dataset/) and [KSS ver 1.4](https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset) Dataset.
+
+#### 2. Build Forced Aligned Information.
+- Non-Attentive Tacotron is duration based model.
+- So, alignment information between grapheme and audio is essential.
+- We make alignment information using [Wav2vec 2.0](https://arxiv.org/abs/2006.11477) released from [fairseq](https://github.com/pytorch/fairseq/tree/main/examples/wav2vec).
+- We also support pretrained wav2vec 2.0 model for Korean in this [[LINK]](https://drive.google.com/file/d/1BBYDTaBS0co7_VgaRowqk8NvFGA5bBgF/view?usp=sharing).
+- The Korean Wav2vec 2.0 model is trained on aihub korean dialog dataset to generate grapheme based prediction described in [K-Wav2vec 2.0](https://arxiv.org/abs/2110.05172).
+- The English model is automatically downloaded when you run the code.
+- Run the command below:
+```bash
+## 1. LJSpeech example
+## set your data path and audio path(examples are below:)
+AUDIO_PATH=/code/gitRepo/data/LJSpeech-1.1/wavs2
+SCRIPT_PATH=/code/gitRepo/data/LJSpeech-1.1/metadata.csv
+
+## ljspeech forced aligner
+## check config options in [configs/preprocess_ljspeech.yaml]
+python build_aligned_info.py \
+    base.audio_path=${AUDIO_PATH} \
+    base.script_path=${SCRIPT_PATH} \
+    --config-name preprocess_ljspeech
+    
+    
+## 2. KSS Dataset 
+## set your data path and audio path(examples are below:)
+AUDIO_PATH=/code/gitRepo/data/kss
+SCRIPT_PATH=/code/gitRepo/data/kss/transcript.v.1.4.txt
+PRETRAINED_WAV2VEC=korean_wav2vec2
+
+## kss forced aligner
+## check config options in [configs/preprocess_kss.yaml]
+python build_aligned_info.py \
+    base.audio_path=${AUDIO_PATH} \
+    base.script_path=${SCRIPT_PATH} \
+    base.pretrained_model=${PRETRAINED_WAV2VEC} \
+    --config-name preprocess_kss
+```
+
+#### 3. Train & Evaluate
+- It is recommeded to download the pre-trained vocoder before training the non-attentive tacotron model to evaluate the model performance in training phrase.
+- You can download pre-trained VocGAN in this [[LINK]](https://github.com/rishikksh20/VocGAN).
+- We only experiment with our codes on a one gpu such as 2080ti or TITAN RTX.
+- The robotic sounds are gone when I use batch size 32 with 8 accumulation corresponding to 256 batch size.
+- Run the command below:
+```bash
+## 1. LJSpeech example
+## set your data generator path and save path(examples are below:)
+GENERATOR_PATH=checkpoints_g/ljspeech_29de09d_4000.pt
+SAVE_PATH=results/ljspeech
+
+## train ljspeech non-attentive tacotron
+## check config options in [configs/train_ljspeech.yaml]
+python build_aligned_info.py \
+    base.audio_path=${GENERATOR_PATH} \
+    base.save_path=${SAVE_PATH} \
+    --config-name train_ljspeech
+  
+  
+    
+## 2. KSS Dataset   
+## set your data generator path and save path(examples are below:)
+GENERATOR_PATH=checkpoints_g/vocgan_kss_pretrained_model_epoch_4500.pt
+SAVE_PATH=results/kss
+
+## train kss non-attentive tacotron
+## check config options in [configs/train_kss.yaml]
+python build_aligned_info.py \
+    base.audio_path=${GENERATOR_PATH} \
+    base.save_path=${SAVE_PATH} \
+    --config-name train_kss
+
+```
+
+# Audio Examples
+ Language | Text | Audio Sample  | 
+|----------|-------------------------------------------|---------|
+| Korean   | 이 타코트론은 잘 작동한다.                   | Not Yet |
+| Korean   | <b><ins>이</ins></b> 타코트론은 잘 작동한다. | Not Yet |
+| Korean   | 이 <b><ins>타코</ins></b>트론은 잘 작동한다. | Not Yet |
+| Korean   | 이 타코트론은 <b><ins>잘</ins></b> 작동한다. | Not Yet |
+
+# Forced Aligned Information Examples
+![](samples/english_forced_aligned_information.png)
+![](samples/korean_forced_aligned_information.png)
+
+# ToDo
+- [ ] Sometimes get torch `NAN` errors.(help me)
+- [ ] Remove robotic sounds in synthetic audio.
+
+# References
+- [Non-Attentive Tacotron: Robust and Controllable Neural TTS Synthesis Including Unsupervised Duration Modeling](https://arxiv.org/abs/2010.04301), Shen, Jonathan, *et al*.
+- [HGU-DLLAB's FastSpeech2 implementation](https://github.com/HGU-DLLAB/Korean-FastSpeech2-Pytorch)
+- [NVIDIA's Tacotron2 implementation](https://github.com/NVIDIA/tacotron2)
+- [rishikksh20's VocGAN implementation](https://github.com/rishikksh20/VocGAN)
