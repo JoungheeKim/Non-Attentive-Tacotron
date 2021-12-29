@@ -147,7 +147,7 @@ python train.py \
     --config-name train_kss
 
 ```
-- Parameter informations are stored in `tacotron/configs.py`
+- Parameter informations are stored in [`tacotron/configs.py`](tacotron/configs.py)
 # Audio Examples
  Language | Text with Accent(bold) | Audio Sample  | 
 |----------|-------------------------------------------|---------|
