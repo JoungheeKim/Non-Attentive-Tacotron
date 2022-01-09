@@ -156,6 +156,13 @@ python train.py \
 | Korean   | <b><ins>이</ins></b> 타코트론은 잘 작동한다. | [Sample](https://user-images.githubusercontent.com/30570052/147639573-e9fd2e79-cba5-437d-a9c6-5b9bf869e5c6.mp4) |
 | Korean   | 이 <b><ins>타코</ins></b>트론은 잘 작동한다. | [Sample](https://user-images.githubusercontent.com/30570052/147639588-b8b8abb2-3ea1-47db-b14b-719fbde93054.mp4) |
 | Korean   | 이 타코트론은 <b><ins>잘</ins></b> 작동한다. | [Sample](https://user-images.githubusercontent.com/30570052/147639606-0a1b09f0-0151-4e1c-923d-b2e482db0194.mp4) |
+| English   | This is a truly amazing tacotron.                        | [Sample](https://user-images.githubusercontent.com/30570052/148705242-ce24f1e8-3b4d-4df7-86d2-4c3280e8e6a3.mp4) |
+| English   | <b><ins>This</ins></b> is a truly amazing tacotron.      | [Sample](https://user-images.githubusercontent.com/30570052/148705345-3d38a157-d776-4652-b3e6-ed95ce6a3e83.mp4) |
+| English   | This is a <b><ins>truly</ins></b> amazing tacotron.      | [Sample](https://user-images.githubusercontent.com/30570052/148705353-69d39629-5134-418c-979c-464a68f36387.mp4) |
+| English   | This is a truly <b><ins>amazing</ins></b> tacotron.      | [Sample](https://user-images.githubusercontent.com/30570052/148705358-482c051e-2592-46fc-bad2-26738500b2b9.mp4) |
+| English   | This is a truly amazing <b><ins>tacotron.</ins></b>      | [Sample](https://user-images.githubusercontent.com/30570052/148705364-02ab4e8a-def1-4ae4-94a9-9772ca45e8ea.mp4) |
+
+
 
 
 # Forced Aligned Information Examples
