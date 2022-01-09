@@ -9,7 +9,7 @@ This project is based on [NVIDIA tacotron2](https://github.com/NVIDIA/tacotron2)
 ## Install
 - Before you start the code, you have to check your python>=3.6, torch>=1.10.1, torchaudio>=0.10.0 version.
 - Torchaudio version is strongly restrict because of recent modification. 
-- We support [docker image file](Dockerfile) that we used for this implementation.
+- We support [docker build file](Dockerfile) that we used for this implementation.
 - or You can install a package through the command below:
 ```bash
 ## download the git repository
