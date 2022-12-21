@@ -27,10 +27,10 @@ python setup.py develop
 - Install a package.
 - Download Pretrained tacotron models through links below:
   - [LJSpeech-1.1](https://keithito.com/LJ-Speech-Dataset/) (English, single-female speaker)
-    - trained for 20,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/1kwMt0YYI3vmZFgrnH7NoAKYNwPl_AYoW/view?usp=sharing)
+    - trained for 20,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/18WzOJ7FqzM1AbGZ0SqLuXVYuO2nngBJb/view?usp=sharing)
   - [KSS Dataset](https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset) (Korean, single-female speaker)
-    - trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/1BBYDTaBS0co7_VgaRowqk8NvFGA5bBgF/view?usp=sharing)
-    - trained for 110,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/1n8Ui7OenP_cBPbxF8yJJ_TRyh_Nqq3gm/view?usp=sharing)
+    - trained for 40,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/16P3RlH__tYppwRekioobMocV-CIcypeA/view?usp=sharing)
+    - trained for 110,000 steps with 32 batch size, 8 accumulation) [[LINK]](https://drive.google.com/file/d/1g_-7rq3SoOwI6yfGi3m2hw-y13XoX-KZ/view?usp=sharing)
 - Download Pretrained VocGAN vocoder corresponding tacotron model in this [[LINK]](https://github.com/rishikksh20/VocGAN)
 - Run a python code below:
 ```python
@@ -81,7 +81,7 @@ with torch.no_grad():
 - Non-Attentive Tacotron is duration based model.
 - So, alignment information between grapheme and audio is essential.
 - We make alignment information using [Wav2vec 2.0](https://arxiv.org/abs/2006.11477) released from [fairseq](https://github.com/pytorch/fairseq/tree/main/examples/wav2vec).
-- We also support pretrained wav2vec 2.0 model for Korean in this [[LINK]](https://drive.google.com/file/d/1BBYDTaBS0co7_VgaRowqk8NvFGA5bBgF/view?usp=sharing).
+- We also support pretrained wav2vec 2.0 model for Korean in this [[LINK]](https://drive.google.com/file/d/15VkrCL2_Vc-nkRuhtZJwg-cIeNXsRE_-/view?usp=sharing).
 - The Korean Wav2vec 2.0 model is trained on [aihub korean dialog dataset](https://aihub.or.kr/aidata/105) to generate grapheme based prediction described in [K-Wav2vec 2.0](https://arxiv.org/abs/2110.05172).
 - The English model is automatically downloaded when you run the code.
 - Run the command below:
@@ -113,7 +113,7 @@ python build_aligned_info.py \
     base.pretrained_model=${PRETRAINED_WAV2VEC} \
     --config-name preprocess_kss
 ```
-- We also support our preprocessed forced algined files for [KSS ver1.4 dataset](https://drive.google.com/file/d/1Ou3X_xHDmfYLSLIp3WW8KO6dSvco7iQQ/view?usp=sharing) and [LJSpeech1.1](https://drive.google.com/file/d/1IOLrORHq-_No16yBaiNX6D1p6PIHxT56/view?usp=sharing)
+- We also support our preprocessed forced algined files for [KSS ver1.4 dataset](https://drive.google.com/file/d/1_pd58Gv0y7RMXlahDrrBR981ZTI7F_Kq/view?usp=sharing) and [LJSpeech1.1](https://drive.google.com/file/d/1MfcqPW7p_CGzEZsHsaXwYgZxDFyUxZ4Y/view?usp=sharing)
 #### 3. Train & Evaluate
 - It is recommeded to download the pre-trained vocoder before training the non-attentive tacotron model to evaluate the model performance in training phrase.
 - You can download pre-trained VocGAN in this [[LINK]](https://github.com/rishikksh20/VocGAN).
